@@ -27,7 +27,7 @@
  */
 
 process.stdin.resume();
-process.stdin.setEncoding('ascii');
+process.stdin.setEncoding('utf8');
 
 var __input_stdin = "";
 var __input_stdin_array = "";
