@@ -39,29 +39,27 @@ process.stdin.on('data', function (data) {
 
 function solveMeFirst(a) {
   var result = 0;
-  var r1 = a.split("");
+  var r1 = a.toLocaleLowerCase().split("");
   var r2 = [];
   var m = 26;
   var obj = {};
+  
+  r1.forEach(function(v){
+    obj[v] = obj[v] ? obj[v] + 1 : 1;
+  });
 
-  for (var i = 0, l1 = r1.length; i < l1; i++) {
-    var c = r1[i];
-
-    obj[c] = obj[c] ? obj[c] + 1 : 1;
-  }
-
-  for (var j in obj) {
-    r2.push(obj[j]);
+  for (var i in obj) {
+    r2.push(obj[i]);
   }
 
   r2.sort(function (a, b) {
-    return b - a
+    return b - a;
   });
-
-  for (var k = 0, l2 = r2.length; k < l2; k++) {
-    result += m * r2[k];
+  
+  r2.forEach(function(v){
+    result += m * v;
     m--;
-  }
+  });
 
   return result;
 }
