@@ -37,40 +37,43 @@ process.stdin.on('data', function (data) {
   __input_stdin += data;
 });
 
-function solveMeFirst(a) {
-  var result = 0;
-  var r1 = a.toLocaleLowerCase().split("");
-  var r2 = [];
-  var m = 26;
-  var obj = {};
-  
-  r1.forEach(function(v){
-    obj[v] = obj[v] ? obj[v] + 1 : 1;
-  });
+process.stdin.on('end', function () {
+  __input_stdin_array = __input_stdin.split(" ");
 
-  for (var i in obj) {
-    r2.push(obj[i]);
+  var res;
+  var s = __input_stdin_array[__input_currentline].trim();
+
+  res = solveMeFirst(s);
+  process.stdout.write("" + res + "\n");
+
+});
+
+function solveMeFirst(s) {
+  var result = 0;
+  var m = 26;
+
+  var r1 = s.toLowerCase();
+  var r1_len = r1.length;
+  var r2 = [];
+  var obj = {};
+
+  for (var i = 0; i < r1_len; i++) {
+    var v = r1.charAt(i);
+    obj[v] = obj[v] ? obj[v] + 1 : 1;
+  }
+
+  for (var j in obj) {
+    r2.push(obj[j]);
   }
 
   r2.sort(function (a, b) {
     return b - a;
   });
-  
-  r2.forEach(function(v){
+
+  r2.forEach(function (v) {
     result += m * v;
     m--;
   });
 
   return result;
 }
-
-process.stdin.on('end', function () {
-  __input_stdin_array = __input_stdin.split(" ");
-
-  var res;
-  var _a = __input_stdin_array[__input_currentline].trim();
-
-  res = solveMeFirst(_a);
-  process.stdout.write("" + res + "\n");
-
-});
