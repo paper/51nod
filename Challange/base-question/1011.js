@@ -29,6 +29,7 @@ process.stdin.on('data', function (data) {
   __input_stdin += data;
 });
 
+// 辗转相除法
 function solveMeFirst(a, b) {
   
   var min = a < b ? a : b;
